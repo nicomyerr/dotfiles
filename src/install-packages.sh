@@ -1,7 +1,10 @@
-readarray PACKAGEMANAGERS < <(yq packages.yaml | grep -v '-' | tr -d ':')
+PACKAGEMANAGERS=$(yq packages.yaml | grep -v '-' | tr -d ':')
 
-for PACKAGEMANAGER in "${PACKAGEMANAGERS[@]}"; do
-  echo "Installing packages with ${PACKAGEMANAGER}"
-  PACKAGES=$(yq .${PACKAGEMANAGER} packages.yaml)
-  echo "${PACKAGES}"
-done
+while read PACKAGEMANAGER; do
+  echo "Installing packages with '${PACKAGEMANAGER}'"
+  PACKAGES=$(yq .${PACKAGEMANAGER} packages.yaml | sed 's|[- "]||g')
+  while read PACKAGE; do
+    echo "sudo ${PACKAGEMANAGER} -S ${PACKAGE}"
+  done < <(echo "${PACKAGES}")
+  echo "Finished installing '${PACKAGEMANAGER}' packages"
+done < <(echo "${PACKAGEMANAGERS}")
