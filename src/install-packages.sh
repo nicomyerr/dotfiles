@@ -2,7 +2,11 @@
 
 function install_packages_with_packagemanager() {
   while read PACKAGE; do
-    echo "sudo ${PACKAGEMANAGER} -S ${PACKAGE}"
+    if ${PACKAGEMANAGER} -Qs ${PACKAGE} > /dev/null ; then
+      echo "'${PACKAGE}' is already installed"
+    else
+      echo "sudo ${PACKAGEMANAGER} -S ${PACKAGE}"
+    fi
   done < <(echo "$1")
 }
 
