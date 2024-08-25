@@ -1,17 +1,11 @@
-impl: http://github.com/blend-os/tracks/raw/main
-repo: https://pkg-repo.blendos.co
-track: plasma
-
 packages:
-  # default linux kernel because of custom track
-  - 'linux'
-  # terminal stuff
-  - 'kitty'
-  - 'zsh'
-  - 'fastfetch'
-  - 'neovim'
-  - 'firefox'
+  pacman:
+    - "kitty"
+    - "zsh"
+    - "fastfetch"
+    - "neovim"
+    - "firefox"
 
-aur-packages:
-  - 'webcord'
-  - 'spotify'
+  yay:
+    - "webcord"
+    - "spotify"

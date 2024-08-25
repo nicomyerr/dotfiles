@@ -11,10 +11,10 @@ function install_packages_with_packagemanager() {
 }
 
 function install_packages() {
-  PACKAGEMANAGERS=$(yq .packages packages.yaml | grep -v '-' | tr -d ':')
+  PACKAGEMANAGERS=$(yq .packages system.yaml | grep -v '-' | tr -d ':')
   while read PACKAGEMANAGER; do
     echo "Installing packages with '${PACKAGEMANAGER}'"
-    PACKAGES=$(yq .packages.${PACKAGEMANAGER} packages.yaml | sed 's|[- "]||g')
+    PACKAGES=$(yq .packages.${PACKAGEMANAGER} system.yaml | sed 's|[- "]||g')
     install_packages_with_packagemanager "${PACKAGES}"
     echo "Finished installing '${PACKAGEMANAGER}' packages"
   done < <(echo "${PACKAGEMANAGERS}")
