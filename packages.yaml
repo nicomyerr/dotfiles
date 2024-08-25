@@ -1,10 +1,11 @@
-pacman:
-  - "kitty"
-  - "zsh"
-  - "fastfetch"
-  - "neovim"
-  - "firefox"
+packages:
+  pacman:
+    - "kitty"
+    - "zsh"
+    - "fastfetch"
+    - "neovim"
+    - "firefox"
 
-yay:
-  - "webcord"
-  - "spotify"
+  yay:
+    - "webcord"
+    - "spotify"
