@@ -5,7 +5,9 @@ function install_packages_with_packagemanager() {
     if ${PACKAGEMANAGER} -Qs ${PACKAGE} > /dev/null ; then
       echo "'${PACKAGE}' is already installed"
     else
-      echo "sudo ${PACKAGEMANAGER} -S ${PACKAGE}"
+      echo "installing '${PACKAGE}'"
+      # this doesnt work :(
+      # sudo ${PACKAGEMANAGER} -S ${PACKAGE}
     fi
   done < <(echo "$1")
 }
