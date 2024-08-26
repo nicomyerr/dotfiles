@@ -3,6 +3,7 @@
 config_files=$(yq .config-files system.yaml | sed 's|[- ]||g')
 
 # TODO: refactoring
+# TODO: handling for e.g. zsh -> $HOME/.zshrc
 
 while read config_file; do
   app=$(echo ${config_file} | cut -d ":" -f 1)
