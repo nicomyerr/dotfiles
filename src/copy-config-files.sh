@@ -13,9 +13,9 @@ while read config_file; do
   fi
   if [ ! -d $full_path ]; then
     echo "creating directory '$full_path'"
-    # mkdir $full_path
+    mkdir $full_path
     echo "copying config file(s) of '${app}' to local directory: '$full_path'"
-    # cp -r config/$app/. $full_path/
+    cp -r config/$app/. $full_path/
   else
     echo "directory '$full_path' already exists"
     # FIXME: not working :(
