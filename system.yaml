@@ -1,3 +1,5 @@
+config-files:
+  - kitty: ".config/kitty"
 packages:
   pacman:
     - kitty
