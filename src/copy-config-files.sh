@@ -2,6 +2,8 @@
 
 config_files=$(yq .config-files system.yaml | sed 's|[- ]||g')
 
+# TODO: refactoring
+
 while read config_file; do
   app=$(echo ${config_file} | cut -d ":" -f 1)
   path=$(echo ${config_file} | cut -d ":" -f 2 | sed 's|["]||g')
