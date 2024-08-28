@@ -1,23 +1,23 @@
 #!/bin/bash
 
 function install_packages_with_packagemanager() {
-  while read PACKAGE; do
-    if ${PACKAGEMANAGER} -Qs ${PACKAGE} > /dev/null ; then
-      echo "'${PACKAGE}' is already installed"
+  while read package; do
+    if ${packagemanager} -Qs ${package} > /dev/null ; then
+      echo "'${package}' is already installed"
     else
-      echo "installing '${PACKAGE}'"
+      echo "installing '${package}'"
       # this doesnt work :(
-      # sudo ${PACKAGEMANAGER} -S ${PACKAGE}
+      # sudo ${packagemanager} -S ${package}
     fi
   done < <(echo "$1")
 }
 
 function install_packages() {
-  PACKAGEMANAGERS=$(yq .packages system.yaml | grep -v '-' | tr -d ':')
-  while read PACKAGEMANAGER; do
-    echo "Installing packages with '${PACKAGEMANAGER}'"
-    PACKAGES=$(yq .packages.${PACKAGEMANAGER} system.yaml | sed 's|[- "]||g')
-    install_packages_with_packagemanager "${PACKAGES}"
-    echo "Finished installing '${PACKAGEMANAGER}' packages"
-  done < <(echo "${PACKAGEMANAGERS}")
+  packagemanagers=$(yq .packages system.yaml | grep -v '-' | tr -d ':')
+  while read packagemanager; do
+    echo "Installing packages with '${packagemanager}'"
+    packages=$(yq .packages.${packagemanager} system.yaml | sed 's|[- "]||g')
+    install_packages_with_packagemanager "${packages}"
+    echo "Finished installing '${packagemanager}' packages"
+  done < <(echo "${packagemanagers}")
 }
