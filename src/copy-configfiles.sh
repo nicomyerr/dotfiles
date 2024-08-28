@@ -50,6 +50,7 @@ function copy_configfiles_for_app() {
 }
 
 function copy_configfiles() {
+  config_files=$(yq .config-files system.yaml | sed 's|[- ]||g')
   while read config_file; do
     app=$(echo ${config_file} | cut -d ":" -f 1)
     path=$(echo ${config_file} | cut -d ":" -f 2 | sed 's|["]||g')
@@ -59,7 +60,3 @@ function copy_configfiles() {
     copy_configfiles_for_app "$full_path" "$app"
   done < <(echo "${config_files}")
 }
-
-config_files=$(yq .config-files system.yaml | sed 's|[- ]||g')
-
-copy_configfiles
