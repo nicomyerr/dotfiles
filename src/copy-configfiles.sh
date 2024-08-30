@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# TODO: refactoring
 # TODO: handling for e.g. zsh -> $HOME/.zshrc
 
 function get_full_path () {
