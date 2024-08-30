@@ -26,8 +26,8 @@ function copy_existing_configfiles() {
   app=$2
 
   echo "directory '$path' already exists"
-  # FIXME: not working :(
-  # read "override_files?should the current files be overriden? [y/n]"
+  echo "should the current files be overriden? [y/n]"
+  read override_files < /dev/tty
   if [ "$override_files" == "y" ]; then
     echo "copying config file(s) of '${app}' to local directory: '$path'"
     cp -r config/$app/. $path/
