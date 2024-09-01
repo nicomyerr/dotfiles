@@ -6,8 +6,7 @@ function install_packages_with_packagemanager() {
       echo "'${package}' is already installed"
     else
       echo "installing '${package}'"
-      # this doesnt work :(
-      # sudo ${packagemanager} -S ${package}
+      sudo ${packagemanager} -S ${package} < /dev/tty
     fi
   done < <(echo "$1")
 }
