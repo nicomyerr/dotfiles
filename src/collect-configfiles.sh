@@ -8,7 +8,7 @@ function get_full_path () {
   fi
 }
 
-function copy_configfiles() {
+function collec_configfiles() {
   config_files=$(yq .config-files system.yaml | sed 's|[- ]||g')
 
   while read config_file; do
@@ -25,4 +25,4 @@ function copy_configfiles() {
   done < <(echo "${config_files}")
 }
 
-copy_configfiles
+collec_configfiles
