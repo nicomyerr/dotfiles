@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function collec_configfiles() {
+function collect_configfiles() {
   config_files=$(yq .config-files system.yaml | sed 's|[- ]||g')
 
   while read config_file; do
@@ -21,4 +21,4 @@ function collec_configfiles() {
   done < <(echo "${config_files}")
 }
 
-collec_configfiles
+collect_configfiles
