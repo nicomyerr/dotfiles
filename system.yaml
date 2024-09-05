@@ -1,6 +1,6 @@
 config-files:
   - kitty: ".config/kitty"
-  - zsh: ""
+  - zsh: ".zshrc"
   - fastfetch: ".config/fastfetch"
 packages:
   pacman:
