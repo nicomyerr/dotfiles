@@ -1,24 +1,18 @@
 #!/bin/bash
 
-# TODO: handling for e.g. zsh -> $HOME/.zshrc
-
-function get_full_path () {
-  if [ ! -z $1 ]; then
-    echo "$HOME/$path"
-  else
-    echo $HOME
-  fi
-}
-
 function copy_not_existing_configfiles() {
   path=$1
   app=$2
 
-  echo "Creating directory '$path'"
-  mkdir $path
-
-  echo "Copying config file(s) of '${app}' to local directory: '$path'"
-  cp -r config/$app/. $path/
+  if [[ $path =~ ".config" ]]; then
+    echo "Creating directory '$path'"
+    mkdir $path
+    echo "Copying config file(s) of '${app}' to local directory: '$path'"
+    cp -r config/$app/. $path/
+  else
+    echo "Copying config file of '${app}' to local directory: '$path'"
+    cp -r config/$app/. $HOME
+  fi
 }
 
 function copy_existing_configfiles() {
@@ -58,7 +52,9 @@ function copy_configfiles() {
     app=$(echo ${config_file} | cut -d ":" -f 1)
     path=$(echo ${config_file} | cut -d ":" -f 2 | sed 's|["]||g')
 
-    full_path=$(get_full_path "$path")
+    full_path="$HOME/$path"
+
+    echo "app: $app path $full_path"
 
     copy_configfiles_for_app "$full_path" "$app"
   done < <(echo "${config_files}")
