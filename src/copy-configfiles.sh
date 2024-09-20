@@ -54,8 +54,6 @@ function copy_configfiles() {
 
     full_path="$HOME/$path"
 
-    echo "app: $app path $full_path"
-
     copy_configfiles_for_app "$full_path" "$app"
   done < <(echo "${config_files}")
 }

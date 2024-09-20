@@ -9,8 +9,6 @@ function collect_configfiles() {
 
     full_path="$HOME/$path"
 
-    echo "app: $app path: $full_path"
-
     if [[ $path =~ ".config" ]]; then
       echo "Copying configfiles for '$app' to repo"
       cp -r $full_path/. config/$app/
