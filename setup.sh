@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# installing yq to install packages (if not installed)
-# sudo pacman -S go-yq
+if pacman -Qs go-yq > /dev/null ; then
+  echo "yq already installed"
+else
+  echo "yq is not installed"
+  sudo pacman -S go-yq
+fi
 
 source $PWD/src/install-packages.sh
 source $PWD/src/copy-configfiles.sh
