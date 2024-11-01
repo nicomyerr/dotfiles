@@ -8,8 +8,12 @@ packages:
     - zsh
     - fastfetch
     - cowsay
+    - wl-cipboard
+    - gparted
     - neovim
     - firefox
+    - steam
   yay:
+    - visual-studio-code-bin
     - webcord
     - spotify
