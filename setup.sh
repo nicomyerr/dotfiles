@@ -10,6 +10,7 @@ fi
 source $PWD/src/install-packages.sh
 source $PWD/src/copy-configfiles.sh
 
+// TODO: installing oh-my-zsh and fix for autosuggestions + syntaxhighlight
 echo "Installing packages..."
 install_packages
 echo """
