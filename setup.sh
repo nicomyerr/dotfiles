@@ -10,12 +10,17 @@ fi
 source $PWD/src/install-packages.sh
 source $PWD/src/copy-configfiles.sh
 
-// TODO: installing oh-my-zsh and fix for autosuggestions + syntaxhighlight
 echo "Installing packages..."
 install_packages
 echo """
 Finished installing packages
 """
+
+echo "Installing ohmyzsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Fixing autosuggestions and syntaxhighlighting plugin"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 echo "Copying configfiles..."
 copy_configfiles
