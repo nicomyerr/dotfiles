@@ -22,8 +22,19 @@ echo "Fixing autosuggestions and syntaxhighlighting plugin"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-echo "Copying configfiles..."
-copy_configfiles
-echo """
-Finished copying configfiles
-"""
+
+echo "Do you want to copy the configfiles/dotfiles? [y/n]"
+read copy_configfiles < /dev/tty
+
+if [ "$copy_configfiles" == "y" ]; then
+  echo "Copying configfiles..."
+  copy_configfiles
+  echo """
+  Finished copying configfiles
+  """
+elif [ "$copy_configfiles" == "n" ]; then
+  echo "Not copying configfiles."
+else
+  echo "You should write 'y' or 'n' :("
+fi
+
