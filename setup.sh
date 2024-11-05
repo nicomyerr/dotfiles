@@ -15,7 +15,7 @@ install_packages
 echo """
 Finished installing packages
 """
-
+# TODO: check if ohmyzsh is not installed and fix for plugins already done
 echo "Installing ohmyzsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 echo "Fixing autosuggestions and syntaxhighlighting plugin"

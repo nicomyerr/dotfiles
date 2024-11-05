@@ -16,6 +16,7 @@ function install_packages() {
   packagemanagers=$(yq .packages system.yaml | grep -v '-' | tr -d ':')
   while read packagemanager; do
     echo "Installing packages with '${packagemanager}'"
+    # // TODO: fix behaviour for removing "-" in package name (e.g. "libreoffice-still")
     packages=$(yq .packages.${packagemanager} system.yaml | sed 's|[- "]||g')
     install_packages_with_packagemanager "${packages}"
     echo "Finished installing '${packagemanager}' packages"
