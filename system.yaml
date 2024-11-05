@@ -12,6 +12,7 @@ packages:
     - gparted
     - neovim
     - firefox
+    - libreoffice-still
     - steam
   yay:
     - visual-studio-code-bin
