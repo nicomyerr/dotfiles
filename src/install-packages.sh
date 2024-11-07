@@ -6,7 +6,7 @@ function install_packages_with_packagemanager() {
       echo "'${package}' is already installed"
     else
       echo "installing '${package}'"
-      // TODO: dont install packages with sudo for yay
+      # TODO: dont install packages with sudo for yay
       sudo ${packagemanager} -S ${package} < /dev/tty
     fi
   done < <(echo "$1")
@@ -16,8 +16,7 @@ function install_packages() {
   packagemanagers=$(yq .packages system.yaml | grep -v '-' | tr -d ':')
   while read packagemanager; do
     echo "Installing packages with '${packagemanager}'"
-    # // TODO: fix behaviour for removing "-" in package name (e.g. "libreoffice-still")
-    packages=$(yq .packages.${packagemanager} system.yaml | sed 's|[- "]||g')
+    packages=$(yq .packages.${packagemanager} system.yaml | cut -c2-)
     install_packages_with_packagemanager "${packages}"
     echo "Finished installing '${packagemanager}' packages"
   done < <(echo "${packagemanagers}")
