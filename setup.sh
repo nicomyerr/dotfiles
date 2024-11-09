@@ -15,12 +15,24 @@ install_packages
 echo """
 Finished installing packages
 """
-# TODO: check if ohmyzsh is not installed and fix for plugins already done
+
+# TODO: check if ohmyzsh is not installed
 echo "Installing ohmyzsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo "Fixing autosuggestions and syntaxhighlighting plugin"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+if [ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
+  echo "zsh-autosuggestions already fixed"
+else
+  echo "Fixing zsh-autosuggestions"
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+if [ -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
+  echo "zsh-syntax-highlighting already fixed"
+else
+  echo "Fixing zsh-syntax-highlighting"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
 
 echo "Do you want to copy the configfiles/dotfiles? [y/n]"
 read copy_configfiles < /dev/tty
