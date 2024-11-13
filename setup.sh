@@ -16,9 +16,12 @@ echo """
 Finished installing packages
 """
 
-# TODO: check if ohmyzsh is not installed
-echo "Installing ohmyzsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [ -d ~/.oh-my-zsh ]; then
+  echo "ohmyzsh already installed"
+else
+  echo "Installing ohmyzsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 
 if [ -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
   echo "zsh-autosuggestions already fixed"
