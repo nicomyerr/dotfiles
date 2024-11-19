@@ -5,9 +5,14 @@ function install_packages_with_packagemanager() {
     if ${packagemanager} -Qs ${package} > /dev/null ; then
       echo "'${package}' is already installed"
     else
-      echo "installing '${package}'"
-      # TODO: dont install packages with sudo for yay
-      sudo ${packagemanager} -S ${package} < /dev/tty
+      echo "Installing '${package}'"
+      if [ "$packagemanager" == "pacman" ]; then
+        sudo pacman -S ${package} < /dev/tty
+      elif [ "$packagemanager" == "yay" ]; then
+        yay -S ${package} < /dev/tty
+      else
+        echo "Invalid packagemanager '${packagemanager}'"
+      fi
     fi
   done < <(echo "$1")
 }
