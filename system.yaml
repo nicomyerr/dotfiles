@@ -1,6 +1,7 @@
 config-files:
   - fastfetch: ".config/fastfetch"
   - kitty: ".config/kitty"
+  - nvim: ".config/nvim"
   - zsh: ".zshrc"
 packages:
   pacman:
